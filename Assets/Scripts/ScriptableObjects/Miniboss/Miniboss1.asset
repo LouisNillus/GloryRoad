@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Miniboss1
   m_EditorClassIdentifier: 
   moneyReward: 150
-  hp: 0
-  fatalRange: 0
+  hp: 400
+  fatalRange: 20

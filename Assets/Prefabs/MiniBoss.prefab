@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1564263824157750901}
-  - component: {fileID: 6067335464777818722}
   - component: {fileID: 2698230161646015647}
   m_Layer: 0
   m_Name: Zone
-  m_TagString: Untagged
+  m_TagString: MiniBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,32 +31,6 @@ Transform:
   m_Father: {fileID: 4174654605784899216}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6067335464777818722
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245444070029306703}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
-  m_EdgeRadius: 0
 --- !u!212 &2698230161646015647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -216,14 +189,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4174654605784899216}
-  - component: {fileID: 4174654605784899219}
+  - component: {fileID: 8023617209566936780}
   - component: {fileID: 4174654605784899218}
   - component: {fileID: 4174654605784899221}
   - component: {fileID: 4174654605784899217}
   - component: {fileID: 7983182502956597242}
+  - component: {fileID: 2689087177030190525}
   m_Layer: 0
   m_Name: MiniBoss
-  m_TagString: Obstacle
+  m_TagString: MiniBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,7 +218,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4174654605784899219
+--- !u!114 &8023617209566936780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,10 +230,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00208ae3b1d1a0547973c543da4f7e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 28
+  hp: 100
   speed: 0
   direction: 0
   hpBar: {fileID: 8024629422604574378}
+  isBoss: 1
+  miniBoss: {fileID: 11400000, guid: 0977ef33ac70f04498a70a59c9c9bc98, type: 2}
 --- !u!212 &4174654605784899218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -370,6 +346,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
+--- !u!61 &2689087177030190525
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174654605784899220}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.000000014901161, y: 0.0011262894}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 0.7}
+  m_EdgeRadius: 0
 --- !u!1 &8884717663370056972
 GameObject:
   m_ObjectHideFlags: 0
