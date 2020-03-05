@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class Inventory : MonoBehaviour
 {
-    public static int money = 15000;
+    public static int money = 0;
 
     [ReadOnly]
     public int argent;

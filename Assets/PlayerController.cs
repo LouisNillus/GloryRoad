@@ -52,8 +52,11 @@ public class PlayerController : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
 
-        Moving();
-        Shooting();
+        if(GameManager.instance.gameIsLaunched)
+        {
+            Moving();
+            Shooting();
+        }
 
         if(int.Parse(ammosLeft.text) != ammos)
         {
@@ -79,6 +82,11 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.Q))
         {
             this.transform.Translate(new Vector2(-1f * Time.deltaTime * speed, 0));
+        }
+
+        if(Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.D))
+        {
+            GameManager.instance.timeMoving += Time.deltaTime;
         }
     }
 

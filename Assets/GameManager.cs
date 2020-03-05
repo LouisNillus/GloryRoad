@@ -7,6 +7,12 @@ public class GameManager : MonoBehaviour
 
     public int goal;
     public int currentScore;
+    public float timeMoving;
+    [Range(0,300)]
+    public int gameDuration;
+
+    public bool gameIsLaunched = false;
+    public static GameManager instance;
 
     public List<GameObject> miniBossList = new List<GameObject>();
 
@@ -14,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -24,5 +30,16 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("Win");
         }
+    }
+
+    public void LaunchGame()
+    {
+        gameIsLaunched = true;
+        InvokeRepeating("StartTimer", 0f, 1f);
+    }
+
+    public void StartTimer()
+    {
+        gameDuration--;
     }
 }
