@@ -15,16 +15,16 @@ MonoBehaviour:
   name: Desert Eagle
   typeOfWeapon: 1
   burst: 0
-  ammunitions: 30
-  projectileSpeed: 10
-  bulletLifeTime: 2
+  ammunitions: 20
+  projectileSpeed: 30
+  bulletLifeTime: 1.5
   timeBetweenShots: 0.5
-  dmg: 30
+  dmg: 50
   howManyProjectiles: 1
   angleBetweenProjectiles: 0
   burstQuantity: 0
   burstInterval: 0
-  cost: 900
+  cost: 1100
   lockedSprite: {fileID: 21300000, guid: fca55b4253e7faf4a8251c1e772f1d65, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 4a3adf3ef1abc3741b48cd73ebb6fd41, type: 3}
   topViewSprite: {fileID: 21300000, guid: e596c70b2a6dd8740ac1b16cf9874eea, type: 3}

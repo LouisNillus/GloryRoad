@@ -16,15 +16,15 @@ MonoBehaviour:
   typeOfWeapon: 1
   burst: 0
   ammunitions: 15
-  projectileSpeed: 85
+  projectileSpeed: 60
   bulletLifeTime: 2
   timeBetweenShots: 1.5
-  dmg: 350
+  dmg: 250
   howManyProjectiles: 1
   angleBetweenProjectiles: 0
   burstQuantity: 0
   burstInterval: 0
-  cost: 3000
+  cost: 4000
   lockedSprite: {fileID: 21300000, guid: 01d184895da03f34fae1b325979b6760, type: 3}
   unlockedSprite: {fileID: 21300000, guid: c3c673fb120e9514c849f0d2e47b091b, type: 3}
   topViewSprite: {fileID: 21300000, guid: 2e1a0980535d6f14eb4d53b117fda557, type: 3}

@@ -15,11 +15,11 @@ MonoBehaviour:
   name: Glock
   typeOfWeapon: 1
   burst: 0
-  ammunitions: 60
-  projectileSpeed: 12
+  ammunitions: 25
+  projectileSpeed: 20
   bulletLifeTime: 2
-  timeBetweenShots: 0.2
-  dmg: 5
+  timeBetweenShots: 0.3
+  dmg: 20
   howManyProjectiles: 1
   angleBetweenProjectiles: 0
   burstQuantity: 0
