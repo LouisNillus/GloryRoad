@@ -92,7 +92,12 @@ public class GameManager : MonoBehaviour
         CancelInvoke("StartTimer");
         totalImpulsionForTimeMoving = timeMoving / initialGameDuration * 100f;
         totalAmmosImpulsion = (float)PlayerController.instance.ammos / (float)weapon.ammunitions * 100f;
-        totalLifeUsed = initialLifeAmount - PlayerController.instance.hp;
+        totalLifeUsed = initialLifeAmount - PlayerController.instance.hp * 3f;
+        UIManager.instance.sliderText.text = (UIManager.instance.slider.value * 100f).ToString("F0");
+
+        impulsionTotal = totalAmmosImpulsion + totalLifeUsed + totalImpulsionForTimeMoving / 100f;
+
+        UIManager.instance.slider.value = impulsionTotal / 100f;
     }
 
 
