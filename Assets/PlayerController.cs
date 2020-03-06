@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("Some ammos will remain in : " + weaponSelected.name);
         }
         instance = this;
-        ammos = weaponSelected.ammunitions;
     }
 
     // Update is called once per frame

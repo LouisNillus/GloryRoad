@@ -45,12 +45,12 @@ public class WeaponUpdate : MonoBehaviour
             }
 
             weaponType.text = weapon.typeOfWeapon.ToString();
-            damages.text = weapon.dmg.ToString();
-            fireRate.text = (1f/weapon.timeBetweenShots).ToString() + "/sec";
-            dps.text = (1f / weapon.timeBetweenShots * weapon.dmg).ToString();
-            range.text = (weapon.bulletLifeTime/weapon.projectileSpeed*100f).ToString();
-            bulletSpeed.text = weapon.projectileSpeed.ToString();
-            ammunitions.text = weapon.ammunitions.ToString();
+            damages.text = weapon.dmg.ToString("F2");
+            fireRate.text = (1f/weapon.timeBetweenShots).ToString("F2") + "/sec";
+            dps.text = (1f / weapon.timeBetweenShots * weapon.dmg).ToString("F2");
+            range.text = (weapon.bulletLifeTime/weapon.projectileSpeed*100f).ToString("F2");
+            bulletSpeed.text = weapon.projectileSpeed.ToString("F2");
+            ammunitions.text = weapon.ammunitions.ToString("F2");
             name.text = weapon.name.ToString();
         }
     }

@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
     public int argent;
 
 
+    public GameObject shop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,11 @@ public class Inventory : MonoBehaviour
         if(Input.GetKey(KeyCode.O))
         {
             money += 10;
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            shop.SetActive(true);
         }
     }
 }

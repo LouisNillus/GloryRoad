@@ -2475,6 +2475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   argent: 0
+  shop: {fileID: 1670771936}
 --- !u!212 &479270224
 SpriteRenderer:
   m_ObjectHideFlags: 0

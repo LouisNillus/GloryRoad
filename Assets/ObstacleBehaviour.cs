@@ -27,7 +27,7 @@ public class ObstacleBehaviour : MonoBehaviour
     [ShowIf("isBoss", true)]
     public SpriteRenderer zone;
 
-    bool canFinishHim;
+    bool canFinishHim = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -116,9 +116,10 @@ public class ObstacleBehaviour : MonoBehaviour
             hpBar.fillAmount = 1f / initialhp * bossHp;
         }
 
-        if (this.tag == "MiniBoss" && miniBoss.fatalRange / 100f * initialhp > bossHp)
+        if (this.tag == "MiniBoss" && miniBoss.fatalRange / 100f * initialhp > bossHp && canFinishHim == false && zone.color != new Color32(0, 255, 0, 100))
         {
             zone.color = new Color32(0,255,0,100);
+            canFinishHim = true;
         }
 
         if(canFinishHim && Input.GetKeyDown(KeyCode.Space))

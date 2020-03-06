@@ -10,14 +10,23 @@ public class Weapon : ScriptableObject
     public string name;
 
     public TypeOfWeapon typeOfWeapon;
+
+    [Range(0,300)]
     public int ammunitions;
+    [Range(0,100)]
     public float projectileSpeed;
+    [Range(0,3)]
     public float bulletLifeTime;
+    [Range(0,5)]
     public float timeBetweenShots;
+    [Range(0,500)]
     public int dmg;
+    [Range(0,20)]
     public int howManyProjectiles;
+    [Range(0,180)]
     public int angleBetweenProjectiles;
 
+    [Range(0,10000)]
     public int cost;
 
     [PreviewField]
