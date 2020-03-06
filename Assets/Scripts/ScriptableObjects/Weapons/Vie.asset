@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74470b542b9727b4bad0be8c0c39c145, type: 3}
-  m_Name: New Weapon
+  m_Name: Vie
   m_EditorClassIdentifier: 
-  name: Glock
+  name: 
   typeOfWeapon: 0
   burst: 0
-  ammunitions: 245
-  projectileSpeed: 1
-  bulletLifeTime: 0.61
-  timeBetweenShots: 0.1
+  ammunitions: 0
+  projectileSpeed: 0
+  bulletLifeTime: 0
+  timeBetweenShots: 0
   dmg: 0
-  howManyProjectiles: 20
-  angleBetweenProjectiles: 21
+  howManyProjectiles: 0
+  angleBetweenProjectiles: 0
   burstQuantity: 0
   burstInterval: 0
   cost: 0
   lockedSprite: {fileID: 0}
   unlockedSprite: {fileID: 0}
   topViewSprite: {fileID: 0}
-  projectile: {fileID: 6463102371918259601, guid: 6231254ce86a7514da60696c92c20980,
-    type: 3}
+  projectile: {fileID: 0}

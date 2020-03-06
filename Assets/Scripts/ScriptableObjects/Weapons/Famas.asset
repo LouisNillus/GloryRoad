@@ -17,16 +17,16 @@ MonoBehaviour:
   burst: 1
   ammunitions: 81
   projectileSpeed: 20
-  bulletLifeTime: 1.5
+  bulletLifeTime: 2
   timeBetweenShots: 0.3
   dmg: 25
   howManyProjectiles: 1
-  angleBetweenProjectiles: 55
+  angleBetweenProjectiles: 0
   burstQuantity: 3
   burstInterval: 0.061
-  cost: 200
+  cost: 2100
   lockedSprite: {fileID: 21300000, guid: f51e7e78baaed964bbf66533d1dec0d4, type: 3}
   unlockedSprite: {fileID: 21300000, guid: ae25463796577e540bb229b0496e984c, type: 3}
   topViewSprite: {fileID: 21300000, guid: 71a87f3a328411d48ba26d851ae46b23, type: 3}
-  projectile: {fileID: 6463102371918259601, guid: 3c8836c8ed7ecb84ebd3e6d2a83006d3,
+  projectile: {fileID: 6463102371918259601, guid: f6e0cdada41c56b489f3b35148d2f0c5,
     type: 3}

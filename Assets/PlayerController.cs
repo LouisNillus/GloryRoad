@@ -50,13 +50,13 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity.x != 0 || rb.velocity.y != 0)
         {
-            Debug.Log("Velocity To 0");
             rb.velocity = Vector2.zero;
         }
 
         if(hp <= 0)
         {
             gameOverScreen.SetActive(true);
+            GameManager.instance.EndGame();
         }
         
         if(weaponVisual.sprite != weaponSelected.topViewSprite)
@@ -137,6 +137,9 @@ public class PlayerController : MonoBehaviour
                             case "SPAS 12":
                             weaponShaker.SetTrigger("Shotgun");
                                 break;
+                            case "AWP":
+                            weaponShaker.SetTrigger("Sniper");
+                                break;
                         }
 
                         if(weaponSelected.burst == true)
@@ -157,9 +160,9 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < weaponSelected.howManyProjectiles; i++)
         {
-            GameObject go = Instantiate(weaponSelected.projectile, this.transform.position, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(weaponSelected.projectile, shootingStartPos.transform.position, Quaternion.identity) as GameObject;
             go.GetComponent<ProjectileBehaviour>().dmg = weaponSelected.dmg;
-            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shootingStartPos.transform.position;
 
             if(weaponSelected.howManyProjectiles > 1)
             {

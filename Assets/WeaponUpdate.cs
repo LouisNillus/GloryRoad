@@ -20,7 +20,7 @@ public class WeaponUpdate : MonoBehaviour
 
     public Image weaponSprite;
 
-    GameObject tempToolSlot;
+    public GameObject tempToolSlot;
 
     public static WeaponUpdate instance;
 
@@ -46,7 +46,7 @@ public class WeaponUpdate : MonoBehaviour
 
     public void SetWeaponInfos()
     {
-        if (weapon != null)
+        if (weapon != null && tempToolSlot.GetComponent<ToolSlot>() != null)
         {
             if (tempToolSlot.GetComponent<ToolSlot>().isBought == true)
             {

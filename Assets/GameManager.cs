@@ -9,9 +9,19 @@ public class GameManager : MonoBehaviour
     public int goal;
     public int currentScore;
     public float timeMoving;
+    public float totalImpulsionForTimeMoving;
     [Range(0,300)]
     public int gameDuration;
+    [ReadOnly, SerializeField]
     int initialGameDuration;
+    [ReadOnly, SerializeField]
+    float totalAmmosImpulsion;
+    [ReadOnly, SerializeField]
+    float totalLifeUsed;
+    [ReadOnly, SerializeField]
+    public int obstaclesKilled;
+
+    int initialLifeAmount;
 
     public float impulsionTotal;
 
@@ -41,6 +51,11 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Win");
         }
 
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            EndGame();
+        }
+
         if(gameDuration <= 0)
         {
             PlayerController.instance.gameOverScreen.SetActive(true);
@@ -52,24 +67,39 @@ public class GameManager : MonoBehaviour
         gameIsLaunched = true;
         InvokeRepeating("StartTimer", 0f, 1f);
         weapon = PlayerController.instance.weaponSelected;
+        initialLifeAmount = PlayerController.instance.hp;
 
-        switch(weapon?.typeOfWeapon)
+        switch (weapon.typeOfWeapon)
         {
             case TypeOfWeapon.Semi:
                 if(weapon.burst == true)
                 {
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (100f-(weapon.timeBetweenShots/3f))*0.8F) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (weapon.howManyProjectiles/10f * 100f * 2f) + ((100f-(weapon.timeBetweenShots/3f*100f))*1.2f) + (weapon.ammunitions/300*100f))/4f;
                 }
                 else
                 {
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (100f-(weapon.timeBetweenShots/3f))*0.6F) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + ((100f-(weapon.timeBetweenShots/3f*100f))*0.6f) + (weapon.ammunitions/300*100f))/4f;
                 }
                 break; 
             case TypeOfWeapon.Auto:
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (100f-(weapon.timeBetweenShots/3f))*2.5f) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + ((100f-(weapon.timeBetweenShots/3f*100f))*2f) + (weapon.ammunitions/300*100f))/4f;
                 break;
         }
     }
+
+    public void EndGame()
+    {
+        CancelInvoke("StartTimer");
+        totalImpulsionForTimeMoving = timeMoving / initialGameDuration * 100f;
+        totalAmmosImpulsion = (float)PlayerController.instance.ammos / (float)weapon.ammunitions * 100f;
+        totalLifeUsed = initialLifeAmount - PlayerController.instance.hp * 3f;
+        UIManager.instance.sliderText.text = (UIManager.instance.slider.value * 100f).ToString("F0");
+
+        impulsionTotal = totalAmmosImpulsion + totalLifeUsed + totalImpulsionForTimeMoving / 100f;
+
+        UIManager.instance.slider.value = impulsionTotal / 100f;
+    }
+
 
     public void StartTimer()
     {

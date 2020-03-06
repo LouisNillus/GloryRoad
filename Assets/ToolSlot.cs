@@ -27,6 +27,8 @@ public class ToolSlot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weapon.cost = (int)(weapon.dmg * weapon.ammunitions + weapon.dmg * (1f / weapon.timeBetweenShots) * weapon.howManyProjectiles + weapon.projectileSpeed * weapon.bulletLifeTime);
+
         cost.text = weapon.cost.ToString() + "$";
         visual.sprite = weapon.lockedSprite;
 
@@ -43,6 +45,15 @@ public class ToolSlot : MonoBehaviour
         
     }
 
+    public void BuyLife(int cost)
+    {
+        if(Inventory.money >= cost)
+        {
+            Inventory.money -= cost;
+            PlayerController.instance.hp++;
+        }
+    }
+
     public void BuyTool()
     {
         if(Inventory.money >= weapon.cost && isBought == false)
@@ -51,6 +62,7 @@ public class ToolSlot : MonoBehaviour
             visual.sprite = weapon.unlockedSprite;
             cost.text = weapon.name;
             buttonText.text = "USE";
+            buttonText.color = Color.yellow;
             isBought = true;
         }
     }
@@ -68,12 +80,12 @@ public class ToolSlot : MonoBehaviour
                 PlayerController.instance.ammos = weapon.ammunitions;
             }
 
+            ToolPicking.instance.ChangeUseState();
             WeaponUpdate.instance.GetWeapon(this.gameObject);
 
             buttonText.text = "SELECTED";
             buttonText.color = Color.green;
             isSelected = true;
-            ToolPicking.instance.ChangeUseState();
         }
     }
 }
