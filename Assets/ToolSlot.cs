@@ -45,6 +45,15 @@ public class ToolSlot : MonoBehaviour
         
     }
 
+    public void BuyLife(int cost)
+    {
+        if(Inventory.money >= cost)
+        {
+            Inventory.money -= cost;
+            PlayerController.instance.hp++;
+        }
+    }
+
     public void BuyTool()
     {
         if(Inventory.money >= weapon.cost && isBought == false)

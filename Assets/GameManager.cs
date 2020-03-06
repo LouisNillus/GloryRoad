@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     int initialGameDuration;
     [ReadOnly, SerializeField]
     float totalAmmosImpulsion;
+    [ReadOnly, SerializeField]
+    float totalLifeUsed;
+
+    int initialLifeAmount;
 
     public float impulsionTotal;
 
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
         gameIsLaunched = true;
         InvokeRepeating("StartTimer", 0f, 1f);
         weapon = PlayerController.instance.weaponSelected;
+        initialLifeAmount = PlayerController.instance.hp;
 
         switch (weapon.typeOfWeapon)
         {
@@ -85,6 +90,7 @@ public class GameManager : MonoBehaviour
         CancelInvoke("StartTimer");
         totalImpulsionForTimeMoving = timeMoving / initialGameDuration * 100f;
         totalAmmosImpulsion = (float)PlayerController.instance.ammos / (float)weapon.ammunitions * 100f;
+        totalLifeUsed = initialLifeAmount - PlayerController.instance.hp;
     }
 
 

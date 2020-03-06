@@ -152,6 +152,12 @@ public class ObstacleBehaviour : MonoBehaviour
             GameManager.instance.currentScore++;
             Destroy(this.gameObject);
         }
+
+        if(isBoss == false && isPB == false)
+        {
+            //Counter obstacels killed;
+        }
+
     }
 }
 public enum Direction{GoDown, GoUp, GoLeft, GoRight }
