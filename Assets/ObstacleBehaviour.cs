@@ -22,7 +22,7 @@ public class ObstacleBehaviour : MonoBehaviour
 
     public bool isBoss;
 
-    [ShowIf("isBoss", true)]
+    [ShowIf("isBoss", true), DrawScriptable]
     public MiniBoss miniBoss;
     [ShowIf("isBoss", true)]
     public SpriteRenderer zone;
@@ -126,6 +126,7 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             Inventory.money += miniBoss.moneyReward;
             GameManager.instance.currentScore++;
+            Destroy(this.gameObject);
         }
     }
 }

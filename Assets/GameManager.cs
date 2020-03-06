@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("Win");
         }
+
+        if(gameDuration <= 0)
+        {
+            PlayerController.instance.gameOverScreen.SetActive(true);
+        }
     }
 
     public void LaunchGame()

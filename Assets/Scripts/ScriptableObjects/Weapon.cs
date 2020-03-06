@@ -11,6 +11,8 @@ public class Weapon : ScriptableObject
 
     public TypeOfWeapon typeOfWeapon;
 
+    public bool burst;
+
     [Range(0,300)]
     public int ammunitions;
     [Range(0,100)]
@@ -25,6 +27,12 @@ public class Weapon : ScriptableObject
     public int howManyProjectiles;
     [Range(0,180)]
     public int angleBetweenProjectiles;
+
+    [Range(0, 10), ShowIf("burst", true)]
+    public int burstQuantity;
+
+    [Range(0, 1), ShowIf("burst", true)]
+    public float burstInterval;
 
     [Range(0,10000)]
     public int cost;
@@ -48,4 +56,4 @@ public class Weapon : ScriptableObject
         
     }
 }
-public enum TypeOfWeapon {Auto, Semi, Spread, Burst, Laser}
+public enum TypeOfWeapon {Auto, Semi}

@@ -25,8 +25,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOverScreen;
     public GameObject childVisual;
+    public GameObject shootingStartPos;
 
     public static PlayerController instance;
+
+    public Animator weaponShaker;
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {        
-        Gizmos.DrawLine(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Gizmos.DrawLine(shootingStartPos.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     private void Shooting()
@@ -112,19 +115,32 @@ public class PlayerController : MonoBehaviour
                 case TypeOfWeapon.Auto:
                     if (Input.GetMouseButton(0))
                     {
+                        weaponShaker.SetTrigger("AK");
                         CreateProjectile();
                     }
                     break;
                 case TypeOfWeapon.Semi:
                     if (Input.GetMouseButtonDown(0))
                     {
-                        CreateProjectile();
-                    }
-                    break;
-                case TypeOfWeapon.Burst:
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        StartCoroutine(BurstWait(0.05f));
+                        switch(weaponSelected.name)
+                        {
+                            case "Famas":
+                            weaponShaker.SetTrigger("Famas");
+                                break;
+                            case "SPAS 12":
+                            weaponShaker.SetTrigger("Shotgun");
+                                break;
+                        }
+
+                        if(weaponSelected.burst == true)
+                        {
+                            StartCoroutine(BurstWait(weaponSelected.burstInterval));
+                        }
+                        else
+                        {
+                            CreateProjectile();
+                        }
+
                     }
                     break;
             }
@@ -134,9 +150,9 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < weaponSelected.howManyProjectiles; i++)
         {
-            GameObject go = Instantiate(weaponSelected.projectile, this.transform.position, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(weaponSelected.projectile, shootingStartPos.transform.position, Quaternion.identity) as GameObject;
             go.GetComponent<ProjectileBehaviour>().dmg = weaponSelected.dmg;
-            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shootingStartPos.transform.position;
 
             if(weaponSelected.howManyProjectiles > 1)
             {
@@ -188,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator BurstWait(float delay)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < weaponSelected.burstQuantity; i++)
         {
             yield return new WaitForSeconds(delay);
             CreateProjectile();
