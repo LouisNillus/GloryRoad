@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     BoxCollider2D bc;
 
     public GameObject gameOverScreen;
+    public GameObject childVisual;
 
     public static PlayerController instance;
 
@@ -51,7 +52,12 @@ public class PlayerController : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
 
-        if(GameManager.instance.gameIsLaunched)
+        Vector2 lookChara = this.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float angle = Mathf.Atan2(lookChara.x, lookChara.y);
+        angle = angle*Mathf.Rad2Deg;
+        childVisual.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, -angle);
+
+        if (GameManager.instance.gameIsLaunched)
         {
             Moving();
             Shooting();
@@ -112,6 +118,12 @@ public class PlayerController : MonoBehaviour
                         CreateProjectile();
                     }
                     break;
+                case TypeOfWeapon.Burst:
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        StartCoroutine(BurstWait(0.05f));
+                    }
+                    break;
             }
         }          
     }
@@ -168,5 +180,15 @@ public class PlayerController : MonoBehaviour
     {
         return Quaternion.Euler(0, 0, degrees) * v;
     }
+
+    IEnumerator BurstWait(float delay)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(delay);
+            CreateProjectile();
+        }
+    }
+
 
 }

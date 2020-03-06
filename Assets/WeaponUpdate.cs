@@ -22,10 +22,12 @@ public class WeaponUpdate : MonoBehaviour
 
     GameObject tempToolSlot;
 
+    public static WeaponUpdate instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -33,9 +35,20 @@ public class WeaponUpdate : MonoBehaviour
     {
         moneyAmount.text = Inventory.money.ToString() + "$";
 
-        if(weapon != null)
+        SetWeaponInfos();
+    }
+
+    public void GetWeapon(GameObject go)
+    {
+        tempToolSlot = go;
+        weapon = go.GetComponent<ToolSlot>().weapon;
+    }
+
+    public void SetWeaponInfos()
+    {
+        if (weapon != null)
         {
-            if(tempToolSlot.GetComponent<ToolSlot>().isBought == true)
+            if (tempToolSlot.GetComponent<ToolSlot>().isBought == true)
             {
                 weaponSprite.sprite = weapon.unlockedSprite;
             }
@@ -46,18 +59,12 @@ public class WeaponUpdate : MonoBehaviour
 
             weaponType.text = weapon.typeOfWeapon.ToString();
             damages.text = weapon.dmg.ToString("F2");
-            fireRate.text = (1f/weapon.timeBetweenShots).ToString("F2") + "/sec";
+            fireRate.text = (1f / weapon.timeBetweenShots).ToString("F2") + "/sec";
             dps.text = (1f / weapon.timeBetweenShots * weapon.dmg).ToString("F2");
-            range.text = (weapon.bulletLifeTime/weapon.projectileSpeed*100f).ToString("F2");
+            range.text = (weapon.bulletLifeTime / weapon.projectileSpeed * 100f).ToString("F2");
             bulletSpeed.text = weapon.projectileSpeed.ToString("F2");
             ammunitions.text = weapon.ammunitions.ToString("F2");
             name.text = weapon.name.ToString();
         }
-    }
-
-    public void GetWeapon(GameObject go)
-    {
-        tempToolSlot = go;
-        weapon = go.GetComponent<ToolSlot>().weapon;
     }
 }
