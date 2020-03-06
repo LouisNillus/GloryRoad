@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu]
 public class Weapon : ScriptableObject
@@ -19,7 +20,9 @@ public class Weapon : ScriptableObject
 
     public int cost;
 
+    [PreviewField]
     public Sprite lockedSprite;
+    [PreviewField]
     public Sprite unlockedSprite;
 
     public GameObject projectile;

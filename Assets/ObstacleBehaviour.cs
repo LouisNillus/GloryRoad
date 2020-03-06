@@ -27,6 +27,8 @@ public class ObstacleBehaviour : MonoBehaviour
     [ShowIf("isBoss", true)]
     public SpriteRenderer zone;
 
+    bool canFinishHim;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Projectile")

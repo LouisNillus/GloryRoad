@@ -7047,7 +7047,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 58cb13f15415058438a0ead88a8e530e, type: 3}
+    m_Font: {fileID: 12800000, guid: f5626620d317fd24ea9c64db3be30474, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -7059,7 +7059,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: MITRAILLETTE
+  m_Text: Mitraillette
 --- !u!222 &1778523693
 CanvasRenderer:
   m_ObjectHideFlags: 0
