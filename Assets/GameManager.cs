@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     float totalAmmosImpulsion;
     [ReadOnly, SerializeField]
     float totalLifeUsed;
+    [ReadOnly, SerializeField]
+    public int obstaclesKilled;
 
     int initialLifeAmount;
 

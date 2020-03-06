@@ -2064,7 +2064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8fc3adf15cea9dc4d813e8e0a31f7c8a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ded3c9eefc43544896168f33663258d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3271,6 +3271,7 @@ MonoBehaviour:
   gameDuration: 300
   initialGameDuration: 0
   totalAmmosImpulsion: 0
+  totalLifeUsed: 0
   impulsionTotal: 0
   gameIsLaunched: 0
   miniBossList: []
