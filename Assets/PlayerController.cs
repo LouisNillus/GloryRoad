@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public int hp;
     public float speed;
+    float angle;
+    Vector3 aimingDir;
 
     public Weapon weaponSelected;
 
@@ -21,9 +23,15 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D bc;
 
+    public SpriteRenderer weaponVisual;
+
     public GameObject gameOverScreen;
+    public GameObject childVisual;
+    public GameObject shootingStartPos;
 
     public static PlayerController instance;
+
+    public Animator weaponShaker;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +43,6 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("Some ammos will remain in : " + weaponSelected.name);
         }
         instance = this;
-        ammos = weaponSelected.ammunitions;
     }
 
     // Update is called once per frame
@@ -51,8 +58,19 @@ public class PlayerController : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
         }
+        
+        if(weaponVisual.sprite != weaponSelected.topViewSprite)
+        {
+            weaponVisual.sprite = weaponSelected.topViewSprite;
+        }
 
-        if(GameManager.instance.gameIsLaunched)
+        Vector2 lookChara = this.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        angle = Mathf.Atan2(lookChara.x, lookChara.y);
+        angle = angle*Mathf.Rad2Deg;
+        aimingDir = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, -angle);
+        childVisual.transform.localEulerAngles = aimingDir;
+
+        if (GameManager.instance.gameIsLaunched)
         {
             Moving();
             Shooting();
@@ -92,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {        
-        Gizmos.DrawLine(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Gizmos.DrawLine(shootingStartPos.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     private void Shooting()
@@ -104,13 +122,32 @@ public class PlayerController : MonoBehaviour
                 case TypeOfWeapon.Auto:
                     if (Input.GetMouseButton(0))
                     {
+                        weaponShaker.SetTrigger("AK");
                         CreateProjectile();
                     }
                     break;
                 case TypeOfWeapon.Semi:
                     if (Input.GetMouseButtonDown(0))
                     {
-                        CreateProjectile();
+                        switch(weaponSelected.name)
+                        {
+                            case "Famas":
+                            weaponShaker.SetTrigger("Famas");
+                                break;
+                            case "SPAS 12":
+                            weaponShaker.SetTrigger("Shotgun");
+                                break;
+                        }
+
+                        if(weaponSelected.burst == true)
+                        {
+                            StartCoroutine(BurstWait(weaponSelected.burstInterval));
+                        }
+                        else
+                        {
+                            CreateProjectile();
+                        }
+
                     }
                     break;
             }
@@ -120,14 +157,16 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < weaponSelected.howManyProjectiles; i++)
         {
-            GameObject go = Instantiate(weaponSelected.projectile, this.transform.position, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(weaponSelected.projectile, shootingStartPos.transform.position, Quaternion.identity) as GameObject;
             go.GetComponent<ProjectileBehaviour>().dmg = weaponSelected.dmg;
-            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shootingStartPos.transform.position;
 
             if(weaponSelected.howManyProjectiles > 1)
             {
                 dir = RotateVector(dir, (weaponSelected.angleBetweenProjectiles * i) - (weaponSelected.howManyProjectiles*weaponSelected.angleBetweenProjectiles)/2f); //Chargeurs pairs à revoir
             }
+
+            go.transform.localEulerAngles = aimingDir;
 
             go.GetComponent<Rigidbody2D>().velocity = dir.normalized * weaponSelected.projectileSpeed;
 
@@ -169,5 +208,15 @@ public class PlayerController : MonoBehaviour
     {
         return Quaternion.Euler(0, 0, degrees) * v;
     }
+
+    IEnumerator BurstWait(float delay)
+    {
+        for (int i = 0; i < weaponSelected.burstQuantity; i++)
+        {
+            yield return new WaitForSeconds(delay);
+            CreateProjectile();
+        }
+    }
+
 
 }
