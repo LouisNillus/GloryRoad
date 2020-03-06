@@ -20,6 +20,18 @@ public class GameManager : MonoBehaviour
     float totalLifeUsed;
     [ReadOnly, SerializeField]
     public int obstaclesKilled;
+    [ReadOnly, SerializeField]
+    public float obstaclesImpulsion;
+    [ReadOnly, SerializeField]
+    public int mistakesMade;
+    [ReadOnly, SerializeField]
+    public float mistakesImpulsion;
+    [ReadOnly, SerializeField]
+    public int pbObtained;
+    [ReadOnly, SerializeField]
+    public float pbImpulsion;
+    [ReadOnly]
+    public float weaponImpulsivity;
 
     int initialLifeAmount;
 
@@ -29,11 +41,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public List<GameObject> miniBossList = new List<GameObject>();
+    public List<GameObject> pbList = new List<GameObject>();
 
     Weapon weapon;
 
-    [ReadOnly]
-    public float weaponImpulsivity;
 
 
     // Start is called before the first frame update
@@ -90,14 +101,19 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         CancelInvoke("StartTimer");
-        totalImpulsionForTimeMoving = timeMoving / initialGameDuration * 100f;
-        totalAmmosImpulsion = (float)PlayerController.instance.ammos / (float)weapon.ammunitions * 100f;
-        totalLifeUsed = initialLifeAmount - PlayerController.instance.hp * 3f;
+        totalImpulsionForTimeMoving = (timeMoving / initialGameDuration * 100f)/2f;
+        totalAmmosImpulsion = ((float)weapon.ammunitions - (float)PlayerController.instance.ammos) / (float)weapon.ammunitions * 100f * 0.3f;
+        //totalAmmosImpulsion = Mathf.Clamp(totalAmmosImpulsion, 0f, 30f);
+        //totalLifeUsed = initialLifeAmount - PlayerController.instance.hp * 3f;
         UIManager.instance.sliderText.text = (UIManager.instance.slider.value * 100f).ToString("F0");
+        obstaclesImpulsion = obstaclesKilled * 0.3f;
+        mistakesImpulsion = (mistakesMade/miniBossList.Count)*100f;
+        pbImpulsion = (pbObtained/pbList.Count)*100f;
+        impulsionTotal = (weaponImpulsivity/2f + totalAmmosImpulsion + /*totalLifeUsed +*/ + mistakesImpulsion + totalImpulsionForTimeMoving + obstaclesImpulsion - pbImpulsion) / 100f;
 
-        impulsionTotal = totalAmmosImpulsion + totalLifeUsed + totalImpulsionForTimeMoving / 100f;
 
-        UIManager.instance.slider.value = impulsionTotal / 100f;
+
+        UIManager.instance.slider.value = impulsionTotal;
     }
 
 

@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
                 case TypeOfWeapon.Auto:
                     if (Input.GetMouseButton(0))
                     {
+                        StartCoroutine(MainPack.DoubleMethodDelayer(ChangeExposure, 150f, 0.05f, ChangeExposure, 0.5f));
                         weaponShaker.SetTrigger("AK");
                         CreateProjectile();
                     }
@@ -227,6 +228,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < weaponSelected.burstQuantity; i++)
         {
+            StartCoroutine(MainPack.DoubleMethodDelayer(ChangeExposure, 150f, 0.05f, ChangeExposure, 0.5f));
             yield return new WaitForSeconds(delay);
             CreateProjectile();
         }

@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
 
         if(Input.GetKey(KeyCode.O))
         {
-            money += 10;
+            money += 500;
         }
 
         if(Input.GetKeyDown(KeyCode.P))
