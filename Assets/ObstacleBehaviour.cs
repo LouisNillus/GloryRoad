@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using LON_Tools;
 using Sirenix.OdinInspector;
 
 public class ObstacleBehaviour : MonoBehaviour
 {
-    [Range(0,1000), HideIf("isBoss", true)]
+    [Range(0,10000), HideIf("isBoss", true)]
     public int hp;
     int initialhp;
     [Range(0, 1000), ShowIf("isBoss", true), ReadOnly]
@@ -33,6 +34,9 @@ public class ObstacleBehaviour : MonoBehaviour
     [ShowIf("isBoss", true)]
     public SpriteRenderer zone;
 
+
+    public ParticleSystem ps;
+
     [ShowIf("isPB", true)]
     public int reward;
 
@@ -47,6 +51,7 @@ public class ObstacleBehaviour : MonoBehaviour
                 bossHp -= collision.gameObject.GetComponent<ProjectileBehaviour>().dmg;
                 if (bossHp <= 0)
                 {
+                    GameManager.instance.mistakesMade++;
                     Destroy(this.gameObject);
                 }
             }
@@ -55,6 +60,10 @@ public class ObstacleBehaviour : MonoBehaviour
                 hp -= collision.gameObject.GetComponent<ProjectileBehaviour>().dmg;
                 if (hp <= 0)
                 {
+                    ParticleSystem newPs = Instantiate(ps, this.transform.position, Quaternion.identity) as ParticleSystem;
+                    newPs.Emit(70);
+                    StartCoroutine(MainPack.SingleMethodDelayer(DestroyAfterTime, newPs.startLifetime, newPs.gameObject));
+                    GameManager.instance.obstaclesKilled++;
                     Destroy(this.gameObject);
                 }
             }
@@ -80,6 +89,7 @@ public class ObstacleBehaviour : MonoBehaviour
     {
         if (collision.tag == "Player" && isPB == true && Input.GetKeyDown(KeyCode.Space))
         {
+            GameManager.instance.pbObtained++;
             Inventory.money += reward;
             Destroy(this.gameObject);
         }
@@ -159,5 +169,11 @@ public class ObstacleBehaviour : MonoBehaviour
         }
 
     }
+
+    public void DestroyAfterTime(GameObject go)
+    {
+        Destroy(go);
+    }
+
 }
 public enum Direction{GoDown, GoUp, GoLeft, GoRight }
