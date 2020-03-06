@@ -9,7 +9,7 @@ public class ObstacleBehaviour : MonoBehaviour
     [Range(0,1000), HideIf("isBoss", true)]
     public int hp;
     int initialhp;
-    [Range(0, 1000), ShowIf("isBoss", true)]
+    [Range(0, 1000), ShowIf("isBoss", true), ReadOnly]
     public int bossHp;
 
     [Range(0,10)]
@@ -24,24 +24,25 @@ public class ObstacleBehaviour : MonoBehaviour
 
     [ShowIf("isBoss", true)]
     public MiniBoss miniBoss;
+    [ShowIf("isBoss", true)]
+    public SpriteRenderer zone;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Projectile")
-        {
-            if(this.tag == "Obstacle")
+        {        
+            if(isBoss == true)
             {
-                hp -= collision.gameObject.GetComponent<ProjectileBehaviour>().dmg;
-                if(hp <= 0)
+                bossHp -= collision.gameObject.GetComponent<ProjectileBehaviour>().dmg;
+                if (bossHp <= 0)
                 {
                     Destroy(this.gameObject);
                 }
             }
-
-            if(this.tag == "MiniBoss")
+            else
             {
-                bossHp -= collision.gameObject.GetComponent<ProjectileBehaviour>().dmg;
-                if (miniBoss.hp <= 0)
+                hp -= collision.gameObject.GetComponent<ProjectileBehaviour>().dmg;
+                if (hp <= 0)
                 {
                     Destroy(this.gameObject);
                 }
@@ -55,25 +56,31 @@ public class ObstacleBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && (miniBoss.fatalRange/100f * miniBoss.hp) > initialhp)
+        if(collision.tag == "Player" && (miniBoss.fatalRange/100f * initialhp) < bossHp)
         {
-            Debug.Log("Boss is not enough damaged");
             collision.gameObject.GetComponent<PlayerController>().hp--;
             StartCoroutine(collision.gameObject.GetComponent<PlayerController>().SetImmunity(1f));
+        }
+    }
+
+    private void Awake()
+    {
+        if (this.tag == "MiniBoss")
+        {
+            initialhp = miniBoss.hp;
+            bossHp = initialhp;
+        }
+        else
+        {
+            initialhp = hp;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        initialhp = hp;
-
-        if(this.tag == "MiniBoss")
-        {
-            initialhp = miniBoss.hp;
-        }
 
         rb = this.GetComponent<Rigidbody2D>();
 
@@ -102,9 +109,14 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             hpBar.fillAmount = 1f / initialhp * hp;
         }
-        else if(this.tag == "MiniBoss" && hpBar.fillAmount != 1f / initialhp * miniBoss.hp)
+        else if(this.tag == "MiniBoss" && hpBar.fillAmount != 1f / initialhp * bossHp)
         {
-            hpBar.fillAmount = 1f / initialhp * miniBoss.hp;
+            hpBar.fillAmount = 1f / initialhp * bossHp;
+        }
+
+        if (this.tag == "MiniBoss" && miniBoss.fatalRange / 100f * initialhp > bossHp)
+        {
+            zone.color = new Color32(0,255,0,100);
         }
     }
 }

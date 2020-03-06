@@ -231,11 +231,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  bossHp: 224
   speed: 0
   direction: 0
   hpBar: {fileID: 8024629422604574378}
   isBoss: 1
   miniBoss: {fileID: 11400000, guid: 0977ef33ac70f04498a70a59c9c9bc98, type: 2}
+  zone: {fileID: 2698230161646015647}
 --- !u!212 &4174654605784899218
 SpriteRenderer:
   m_ObjectHideFlags: 0
