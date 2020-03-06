@@ -53,12 +53,14 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("StartTimer", 0f, 1f);
         weapon = PlayerController.instance.weaponSelected;
 
-        switch(weapon?.typeOfWeapon)
+        Debug.Log((100f - (weapon.timeBetweenShots / 3f)) * 0.8F);
+
+        switch (weapon.typeOfWeapon)
         {
             case TypeOfWeapon.Semi:
                 if(weapon.burst == true)
                 {
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (100f-(weapon.timeBetweenShots/3f))*0.8F) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + Mathf.Exp(100f-(weapon.timeBetweenShots/3f))*0.8F) + (weapon.ammunitions/350*100f)/3f;
                 }
                 else
                 {
