@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public int hp;
     public float speed;
+    float angle;
+    Vector3 aimingDir;
 
     public Weapon weaponSelected;
 
@@ -53,9 +55,10 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 lookChara = this.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float angle = Mathf.Atan2(lookChara.x, lookChara.y);
+        angle = Mathf.Atan2(lookChara.x, lookChara.y);
         angle = angle*Mathf.Rad2Deg;
-        childVisual.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, -angle);
+        aimingDir = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, -angle);
+        childVisual.transform.localEulerAngles = aimingDir;
 
         if (GameManager.instance.gameIsLaunched)
         {
@@ -139,6 +142,8 @@ public class PlayerController : MonoBehaviour
             {
                 dir = RotateVector(dir, (weaponSelected.angleBetweenProjectiles * i) - (weaponSelected.howManyProjectiles*weaponSelected.angleBetweenProjectiles)/2f); //Chargeurs pairs à revoir
             }
+
+            go.transform.localEulerAngles = aimingDir;
 
             go.GetComponent<Rigidbody2D>().velocity = dir.normalized * weaponSelected.projectileSpeed;
 

@@ -17,10 +17,10 @@ MonoBehaviour:
   ammunitions: 100
   projectileSpeed: 15
   bulletLifeTime: 3
-  timeBetweenShots: 0.1
-  dmg: 4
-  howManyProjectiles: 2
-  angleBetweenProjectiles: 10
+  timeBetweenShots: 0.075
+  dmg: 6
+  howManyProjectiles: 1
+  angleBetweenProjectiles: 0
   cost: 500
   lockedSprite: {fileID: 21300000, guid: 316adc9d8c78b15408280dce3885c97d, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 2b61c42d69da83c4daf5795d8a34c9c4, type: 3}
