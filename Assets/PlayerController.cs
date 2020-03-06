@@ -157,9 +157,9 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < weaponSelected.howManyProjectiles; i++)
         {
-            GameObject go = Instantiate(weaponSelected.projectile, shootingStartPos.transform.position, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(weaponSelected.projectile, this.transform.position, Quaternion.identity) as GameObject;
             go.GetComponent<ProjectileBehaviour>().dmg = weaponSelected.dmg;
-            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shootingStartPos.transform.position;
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
 
             if(weaponSelected.howManyProjectiles > 1)
             {

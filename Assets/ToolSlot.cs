@@ -29,6 +29,12 @@ public class ToolSlot : MonoBehaviour
     {
         cost.text = weapon.cost.ToString() + "$";
         visual.sprite = weapon.lockedSprite;
+
+        if(weapon.name == "Glock")
+        {
+            BuyTool();
+            UseTool();
+        }
     }
 
     // Update is called once per frame
