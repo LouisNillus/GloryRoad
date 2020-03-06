@@ -57,6 +57,13 @@ public class ToolSlot : MonoBehaviour
         {
             PlayerController.instance.weaponSelected = weapon;
             ToolPicking.instance.currentWeapon = weapon;
+            if (PlayerController.instance.ammos != weapon.ammunitions)
+            {
+                PlayerController.instance.ammos = weapon.ammunitions;
+            }
+
+            WeaponUpdate.instance.GetWeapon(this.gameObject);
+
             buttonText.text = "SELECTED";
             buttonText.color = Color.green;
             isSelected = true;

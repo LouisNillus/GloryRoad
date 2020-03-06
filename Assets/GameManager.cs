@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float timeMoving;
     [Range(0,300)]
     public int gameDuration;
+    int initialGameDuration;
 
     public bool gameIsLaunched = false;
     public static GameManager instance;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        initialGameDuration = gameDuration;
     }
 
     // Update is called once per frame
@@ -29,6 +31,11 @@ public class GameManager : MonoBehaviour
         if(currentScore == goal)
         {
             //Debug.Log("Win");
+        }
+
+        if(gameDuration <= 0)
+        {
+            PlayerController.instance.gameOverScreen.SetActive(true);
         }
     }
 
