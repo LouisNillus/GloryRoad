@@ -69,8 +69,6 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag + isPB);
-
         if(isPB == false && collision.tag == "Player" && (miniBoss.fatalRange/100f * initialhp) < bossHp)
         {
             collision.gameObject.GetComponent<PlayerController>().hp--;

@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public int goal;
     public int currentScore;
     public float timeMoving;
+    public float totalImpulsionForTimeMoving;
     [Range(0,300)]
     public int gameDuration;
+    [ReadOnly, SerializeField]
     int initialGameDuration;
+    [ReadOnly, SerializeField]
+    float totalAmmosImpulsion;
 
     public float impulsionTotal;
 
@@ -39,6 +43,11 @@ public class GameManager : MonoBehaviour
         if(currentScore == goal)
         {
             //Debug.Log("Win");
+        }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            EndGame();
         }
 
         if(gameDuration <= 0)
@@ -74,6 +83,8 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         CancelInvoke("StartTimer");
+        totalImpulsionForTimeMoving = timeMoving / initialGameDuration * 100f;
+        totalAmmosImpulsion = (float)PlayerController.instance.ammos / (float)weapon.ammunitions * 100f;
     }
 
 

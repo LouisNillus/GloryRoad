@@ -27,6 +27,8 @@ public class ToolSlot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weapon.cost = (int)(weapon.dmg * weapon.ammunitions + weapon.dmg * (1f / weapon.timeBetweenShots) * weapon.howManyProjectiles + weapon.projectileSpeed * weapon.bulletLifeTime);
+
         cost.text = weapon.cost.ToString() + "$";
         visual.sprite = weapon.lockedSprite;
 

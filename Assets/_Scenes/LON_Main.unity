@@ -401,6 +401,7 @@ MonoBehaviour:
   bulletSpeed: {fileID: 977251175}
   ammunitions: {fileID: 720566863}
   weaponSprite: {fileID: 490517138}
+  tempToolSlot: {fileID: 1612428333}
 --- !u!1 &43601845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,7 +3062,10 @@ MonoBehaviour:
   goal: 0
   currentScore: 0
   timeMoving: 0
+  totalImpulsionForTimeMoving: 0
   gameDuration: 300
+  initialGameDuration: 0
+  totalAmmosImpulsion: 0
   impulsionTotal: 0
   gameIsLaunched: 0
   miniBossList: []
@@ -3955,7 +3959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886881363}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -5.1000004, z: 0}
+  m_LocalPosition: {x: -1.5, y: -5.4, z: 0}
   m_LocalScale: {x: 0.3956244, y: 0.3956244, z: 0.3956244}
   m_Children: []
   m_Father: {fileID: 861790551}

@@ -20,7 +20,7 @@ public class WeaponUpdate : MonoBehaviour
 
     public Image weaponSprite;
 
-    GameObject tempToolSlot;
+    public GameObject tempToolSlot;
 
     public static WeaponUpdate instance;
 
