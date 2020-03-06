@@ -6384,7 +6384,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1517606920}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.25967103
+  m_Size: 0.259671
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8130,7 +8130,7 @@ PrefabInstance:
     - target: {fileID: 4174654605784899216, guid: 1ddc6f4cb60f12f41943bcb401b4b6c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7000003
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 4174654605784899216, guid: 1ddc6f4cb60f12f41943bcb401b4b6c1,
         type: 3}
@@ -8187,15 +8187,5 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1374254884}
-    - target: {fileID: 8023617209566936780, guid: 1ddc6f4cb60f12f41943bcb401b4b6c1,
-        type: 3}
-      propertyPath: isBoss
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8023617209566936780, guid: 1ddc6f4cb60f12f41943bcb401b4b6c1,
-        type: 3}
-      propertyPath: bossHp
-      value: 224
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ddc6f4cb60f12f41943bcb401b4b6c1, type: 3}
