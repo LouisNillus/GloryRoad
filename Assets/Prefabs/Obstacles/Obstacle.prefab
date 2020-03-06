@@ -50,7 +50,7 @@ MonoBehaviour:
   hp: 100
   bossHp: 0
   speed: 4.89
-  direction: 0
+  direction: 3
   hpBar: {fileID: 6589467711717796493}
   isBoss: 0
   isPB: 0
