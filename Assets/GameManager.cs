@@ -53,25 +53,29 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("StartTimer", 0f, 1f);
         weapon = PlayerController.instance.weaponSelected;
 
-        Debug.Log((100f - (weapon.timeBetweenShots / 3f)) * 0.8F);
-
         switch (weapon.typeOfWeapon)
         {
             case TypeOfWeapon.Semi:
                 if(weapon.burst == true)
                 {
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + Mathf.Exp(100f-(weapon.timeBetweenShots/3f))*0.8F) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (weapon.howManyProjectiles/10f * 100f * 2f) + ((100f-(weapon.timeBetweenShots/3f*100f))*1.2f) + (weapon.ammunitions/300*100f))/4f;
                 }
                 else
                 {
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (100f-(weapon.timeBetweenShots/3f))*0.6F) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + ((100f-(weapon.timeBetweenShots/3f*100f))*0.6f) + (weapon.ammunitions/300*100f))/4f;
                 }
                 break; 
             case TypeOfWeapon.Auto:
-                    weaponImpulsivity = ((weapon.dmg/400 *100f) + (100f-(weapon.timeBetweenShots/3f))*2.5f) + (weapon.ammunitions/350*100f)/3f;
+                    weaponImpulsivity = ((weapon.dmg/400 *100f) + ((100f-(weapon.timeBetweenShots/3f*100f))*2f) + (weapon.ammunitions/300*100f))/4f;
                 break;
         }
     }
+
+    public void EndGame()
+    {
+        CancelInvoke("StartTimer");
+    }
+
 
     public void StartTimer()
     {

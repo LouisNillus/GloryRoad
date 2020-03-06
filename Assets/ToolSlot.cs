@@ -51,6 +51,7 @@ public class ToolSlot : MonoBehaviour
             visual.sprite = weapon.unlockedSprite;
             cost.text = weapon.name;
             buttonText.text = "USE";
+            buttonText.color = Color.yellow;
             isBought = true;
         }
     }
@@ -68,12 +69,12 @@ public class ToolSlot : MonoBehaviour
                 PlayerController.instance.ammos = weapon.ammunitions;
             }
 
+            ToolPicking.instance.ChangeUseState();
             WeaponUpdate.instance.GetWeapon(this.gameObject);
 
             buttonText.text = "SELECTED";
             buttonText.color = Color.green;
             isSelected = true;
-            ToolPicking.instance.ChangeUseState();
         }
     }
 }

@@ -46,7 +46,7 @@ public class WeaponUpdate : MonoBehaviour
 
     public void SetWeaponInfos()
     {
-        if (weapon != null)
+        if (weapon != null && tempToolSlot.GetComponent<ToolSlot>() != null)
         {
             if (tempToolSlot.GetComponent<ToolSlot>().isBought == true)
             {

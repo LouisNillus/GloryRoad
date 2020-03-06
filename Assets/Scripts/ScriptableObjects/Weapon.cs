@@ -13,7 +13,7 @@ public class Weapon : ScriptableObject
 
     public bool burst;
 
-    [Range(0,350000)]
+    [Range(0,300)]
     public int ammunitions;
     [Range(0,100)]
     public float projectileSpeed;
@@ -23,7 +23,7 @@ public class Weapon : ScriptableObject
     public float timeBetweenShots;
     [Range(0,400)]
     public int dmg;
-    [Range(0,2000)]
+    [Range(0,10)]
     public int howManyProjectiles;
     [Range(0,180)]
     public int angleBetweenProjectiles;

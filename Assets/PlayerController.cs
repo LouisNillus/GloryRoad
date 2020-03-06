@@ -137,6 +137,9 @@ public class PlayerController : MonoBehaviour
                             case "SPAS 12":
                             weaponShaker.SetTrigger("Shotgun");
                                 break;
+                            case "AWP":
+                            weaponShaker.SetTrigger("Sniper");
+                                break;
                         }
 
                         if(weaponSelected.burst == true)
