@@ -29,6 +29,12 @@ public class ToolSlot : MonoBehaviour
     {
         cost.text = weapon.cost.ToString() + "$";
         visual.sprite = weapon.lockedSprite;
+
+        if(weapon.name == "Glock")
+        {
+            BuyTool();
+            UseTool();
+        }
     }
 
     // Update is called once per frame
@@ -57,6 +63,13 @@ public class ToolSlot : MonoBehaviour
         {
             PlayerController.instance.weaponSelected = weapon;
             ToolPicking.instance.currentWeapon = weapon;
+            if (PlayerController.instance.ammos != weapon.ammunitions)
+            {
+                PlayerController.instance.ammos = weapon.ammunitions;
+            }
+
+            WeaponUpdate.instance.GetWeapon(this.gameObject);
+
             buttonText.text = "SELECTED";
             buttonText.color = Color.green;
             isSelected = true;
