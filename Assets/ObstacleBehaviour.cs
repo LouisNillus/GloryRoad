@@ -118,6 +118,12 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             zone.color = new Color32(0,255,0,100);
         }
+
+        if(canFinishHim && Input.GetKeyDown(KeyCode.Space))
+        {
+            Inventory.money += miniBoss.moneyReward;
+            GameManager.instance.currentScore++;
+        }
     }
 }
 public enum Direction{GoDown, GoUp, GoLeft, GoRight }
