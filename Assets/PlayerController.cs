@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 using Sirenix.OdinInspector;
+using LON_Tools;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class PlayerController : MonoBehaviour
     Vector3 aimingDir;
 
     public Weapon weaponSelected;
+
+    public PostProcessVolume volume;
+
+    AutoExposure ae;
+    public FloatParameter keyValueAE;
 
     public Text ammosLeft;
 
@@ -36,6 +43,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        volume.profile.TryGetSettings(out ae);
+
         bc = this.GetComponent<BoxCollider2D>();
         rb = this.GetComponent<Rigidbody2D>();
         if (weaponSelected.ammunitions % weaponSelected.howManyProjectiles != 0)
@@ -148,6 +158,7 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
+                            StartCoroutine(MainPack.DoubleMethodDelayer(ChangeExposure, 150f, 0.05f, ChangeExposure, 0.5f));
                             CreateProjectile();
                         }
 
@@ -221,5 +232,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    void ChangeExposure(float target)
+    {
+        Debug.Log("hello");
+        ae.keyValue.value = target;
+    }
 
 }
