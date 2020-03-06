@@ -15,7 +15,7 @@ MonoBehaviour:
   name: AK-47
   typeOfWeapon: 0
   burst: 0
-  ammunitions: 300
+  ammunitions: 270
   projectileSpeed: 50
   bulletLifeTime: 2.5
   timeBetweenShots: 0.075

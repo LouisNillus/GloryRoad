@@ -15,7 +15,7 @@ MonoBehaviour:
   name: SPAS 12
   typeOfWeapon: 1
   burst: 1
-  ammunitions: 85
+  ammunitions: 100
   projectileSpeed: 15
   bulletLifeTime: 2.5
   timeBetweenShots: 0.5
@@ -24,7 +24,7 @@ MonoBehaviour:
   angleBetweenProjectiles: 3
   burstQuantity: 1
   burstInterval: 0
-  cost: 3800
+  cost: 3837
   lockedSprite: {fileID: 21300000, guid: 696e5adfc5154b14ba1dba25d73071ae, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 2c8091da49218984a9613f2541b1b90e, type: 3}
   topViewSprite: {fileID: 21300000, guid: f75b4f2f6aae7fc448af407ba0a55354, type: 3}

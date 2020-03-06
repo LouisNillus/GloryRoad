@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class Inventory : MonoBehaviour
 {
-    public static int money = 0;
+    public static int money = 25000;
 
     [ReadOnly]
     public int argent;
@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
 
         if(Input.GetKey(KeyCode.O))
         {
-            money += 500;
+            money += 100;
         }
 
         if(Input.GetKeyDown(KeyCode.P))

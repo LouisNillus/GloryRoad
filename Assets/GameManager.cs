@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         //totalAmmosImpulsion = Mathf.Clamp(totalAmmosImpulsion, 0f, 30f);
         //totalLifeUsed = initialLifeAmount - PlayerController.instance.hp * 3f;
         UIManager.instance.sliderText.text = (UIManager.instance.slider.value * 100f).ToString("F0");
-        obstaclesImpulsion = obstaclesKilled * 0.3f;
+        obstaclesImpulsion = obstaclesKilled * 0.15f;
         mistakesImpulsion = (mistakesMade/miniBossList.Count)*100f;
         pbImpulsion = (pbObtained/pbList.Count)*100f;
         impulsionTotal = (weaponImpulsivity/2f + totalAmmosImpulsion + /*totalLifeUsed +*/ + mistakesImpulsion + totalImpulsionForTimeMoving + obstaclesImpulsion - pbImpulsion) / 100f;

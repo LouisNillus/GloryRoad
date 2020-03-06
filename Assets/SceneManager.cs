@@ -17,7 +17,10 @@ namespace LON_MenuArea
         // Update is called once per frame
         void Update()
         {
-        
+            if(Input.GetKeyDown("escape"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
         }
 
         public void ChooseScene(int index)

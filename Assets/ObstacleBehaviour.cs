@@ -7,10 +7,10 @@ using Sirenix.OdinInspector;
 
 public class ObstacleBehaviour : MonoBehaviour
 {
-    [Range(0,10000), HideIf("isBoss", true)]
+    [Range(0,5000), HideIf("isBoss", true)]
     public int hp;
     int initialhp;
-    [Range(0, 1000), ShowIf("isBoss", true), ReadOnly]
+    [Range(0, 1000), ShowIf("isBoss", true)]
     public int bossHp;
 
     [Range(0,10), HideIf("isPB", true)]
