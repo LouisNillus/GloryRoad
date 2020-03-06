@@ -21,5 +21,10 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         argent = money;
+
+        if(Input.GetKey(KeyCode.O))
+        {
+            money += 10;
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74470b542b9727b4bad0be8c0c39c145, type: 3}
   m_Name: Mitraillette
   m_EditorClassIdentifier: 
-  name: Mitraillette
+  name: AK-47
   typeOfWeapon: 0
   ammunitions: 38100
   projectileSpeed: 15
@@ -22,7 +22,7 @@ MonoBehaviour:
   howManyProjectiles: 2
   angleBetweenProjectiles: 10
   cost: 500
-  lockedSprite: {fileID: 21300000, guid: 114a7a1fed175184c836fbac5f9046de, type: 3}
-  unlockedSprite: {fileID: 21300000, guid: f3f7a437881e06b47a2b0bb221c2e6e7, type: 3}
+  lockedSprite: {fileID: 0}
+  unlockedSprite: {fileID: 0}
   projectile: {fileID: 6463102371918259601, guid: d5cdf4006eff60a42b88bf9d2af9cdb3,
     type: 3}
