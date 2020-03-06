@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Machine Gun
   typeOfWeapon: 0
+  burst: 0
   ammunitions: 300
   projectileSpeed: 10
   bulletLifeTime: 3
@@ -21,8 +22,11 @@ MonoBehaviour:
   dmg: 10
   howManyProjectiles: 1
   angleBetweenProjectiles: 0
+  burstQuantity: 0
+  burstInterval: 0
   cost: 600
   lockedSprite: {fileID: 21300000, guid: 30ac69c858d8b9b408eeb27e2b4d4ea5, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 3178cddd1152f8840969ea0439bb33d7, type: 3}
+  topViewSprite: {fileID: 21300000, guid: ed5cdd2a6ae71de41a66b017e8fff278, type: 3}
   projectile: {fileID: 6463102371918259601, guid: d5cdf4006eff60a42b88bf9d2af9cdb3,
     type: 3}

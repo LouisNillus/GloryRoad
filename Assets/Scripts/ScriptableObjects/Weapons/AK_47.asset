@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: AK-47
   typeOfWeapon: 0
+  burst: 0
   ammunitions: 100
   projectileSpeed: 15
   bulletLifeTime: 3
@@ -21,8 +22,11 @@ MonoBehaviour:
   dmg: 6
   howManyProjectiles: 1
   angleBetweenProjectiles: 0
+  burstQuantity: 0
+  burstInterval: 0
   cost: 500
   lockedSprite: {fileID: 21300000, guid: 316adc9d8c78b15408280dce3885c97d, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 2b61c42d69da83c4daf5795d8a34c9c4, type: 3}
+  topViewSprite: {fileID: 21300000, guid: 459ba7c96f2c88c439154a72ccbab5f6, type: 3}
   projectile: {fileID: 6463102371918259601, guid: d5cdf4006eff60a42b88bf9d2af9cdb3,
     type: 3}

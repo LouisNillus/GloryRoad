@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74470b542b9727b4bad0be8c0c39c145, type: 3}
-  m_Name: AWP
+  m_Name: Desert Eagle
   m_EditorClassIdentifier: 
-  name: AWP
+  name: Desert Eagle
   typeOfWeapon: 1
   burst: 0
-  ammunitions: 15
-  projectileSpeed: 85
+  ammunitions: 30
+  projectileSpeed: 10
   bulletLifeTime: 2
-  timeBetweenShots: 1.5
-  dmg: 350
+  timeBetweenShots: 0.5
+  dmg: 30
   howManyProjectiles: 1
   angleBetweenProjectiles: 0
   burstQuantity: 0
   burstInterval: 0
-  cost: 3000
-  lockedSprite: {fileID: 21300000, guid: 01d184895da03f34fae1b325979b6760, type: 3}
-  unlockedSprite: {fileID: 21300000, guid: c3c673fb120e9514c849f0d2e47b091b, type: 3}
-  topViewSprite: {fileID: 21300000, guid: 2e1a0980535d6f14eb4d53b117fda557, type: 3}
-  projectile: {fileID: 6463102371918259601, guid: 990367865685a4c42ad0132a85bb4515,
+  cost: 900
+  lockedSprite: {fileID: 21300000, guid: fca55b4253e7faf4a8251c1e772f1d65, type: 3}
+  unlockedSprite: {fileID: 21300000, guid: 4a3adf3ef1abc3741b48cd73ebb6fd41, type: 3}
+  topViewSprite: {fileID: 21300000, guid: e596c70b2a6dd8740ac1b16cf9874eea, type: 3}
+  projectile: {fileID: 6463102371918259601, guid: 905884ed815c3714697bb1d4aff7468d,
     type: 3}

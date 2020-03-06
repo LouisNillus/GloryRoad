@@ -12,20 +12,29 @@ public class ObstacleBehaviour : MonoBehaviour
     [Range(0, 1000), ShowIf("isBoss", true), ReadOnly]
     public int bossHp;
 
-    [Range(0,10)]
+    [Range(0,10), HideIf("isPB", true)]
     public float speed;
 
+    [HideIf("isPB", true)]
     public Direction direction;
     Rigidbody2D rb;
 
+    [HideIf("isPB", true)]
     public Image hpBar;
 
+    [HideIf("isPB", true)]
     public bool isBoss;
+
+    [HideIf("isBoss", true)]
+    public bool isPB;
 
     [ShowIf("isBoss", true), DrawScriptable]
     public MiniBoss miniBoss;
     [ShowIf("isBoss", true)]
     public SpriteRenderer zone;
+
+    [ShowIf("isPB", true)]
+    public int reward;
 
     bool canFinishHim = false;
 
@@ -51,7 +60,7 @@ public class ObstacleBehaviour : MonoBehaviour
             }
 
         }
-        else if(collision.gameObject.tag == "Player")
+        else if(collision.gameObject.tag == "Player" && isPB == false)
         {
             collision.gameObject.GetComponent<PlayerController>().hp--;
             StartCoroutine(collision.gameObject.GetComponent<PlayerController>().SetImmunity(1f));
@@ -60,10 +69,21 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && (miniBoss.fatalRange/100f * initialhp) < bossHp)
+        Debug.Log(collision.tag + isPB);
+
+        if(isPB == false && collision.tag == "Player" && (miniBoss.fatalRange/100f * initialhp) < bossHp)
         {
             collision.gameObject.GetComponent<PlayerController>().hp--;
             StartCoroutine(collision.gameObject.GetComponent<PlayerController>().SetImmunity(1f));
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player" && isPB == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            Inventory.money += reward;
+            Destroy(this.gameObject);
         }
     }
 
@@ -83,37 +103,43 @@ public class ObstacleBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        rb = this.GetComponent<Rigidbody2D>();
-
-        switch(direction)
+        if(isPB == false)
         {
+            rb = this.GetComponent<Rigidbody2D>();
 
-            case Direction.GoDown:
-                rb.velocity = new Vector2(0, -1) * speed;
-                break;
-            case Direction.GoUp:
-                rb.velocity = new Vector2(0, 1) * speed;
-                break;
-            case Direction.GoLeft:
-                rb.velocity = new Vector2(-1, 0) * speed;
-                break;
-            case Direction.GoRight:
-                rb.velocity = new Vector2(1, 0) * speed;
-                break;
+            switch(direction)
+            {
+
+                case Direction.GoDown:
+                    rb.velocity = new Vector2(0, -1) * speed;
+                    break;
+                case Direction.GoUp:
+                    rb.velocity = new Vector2(0, 1) * speed;
+                    break;
+                case Direction.GoLeft:
+                    rb.velocity = new Vector2(-1, 0) * speed;
+                    break;
+                case Direction.GoRight:
+                    rb.velocity = new Vector2(1, 0) * speed;
+                    break;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hpBar.fillAmount != 1f / initialhp * hp && this.tag == "Obstacle")
+
+        if(hpBar != null)
         {
-            hpBar.fillAmount = 1f / initialhp * hp;
-        }
-        else if(this.tag == "MiniBoss" && hpBar.fillAmount != 1f / initialhp * bossHp)
-        {
-            hpBar.fillAmount = 1f / initialhp * bossHp;
+            if(hpBar.fillAmount != 1f / initialhp * hp && this.tag == "Obstacle")
+            {
+                hpBar.fillAmount = 1f / initialhp * hp;
+            }
+            else if(this.tag == "MiniBoss" && hpBar.fillAmount != 1f / initialhp * bossHp)
+            {
+                hpBar.fillAmount = 1f / initialhp * bossHp;
+            }
         }
 
         if (this.tag == "MiniBoss" && miniBoss.fatalRange / 100f * initialhp > bossHp && canFinishHim == false && zone.color != new Color32(0, 255, 0, 100))

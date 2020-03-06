@@ -41,6 +41,8 @@ public class Weapon : ScriptableObject
     public Sprite lockedSprite;
     [PreviewField]
     public Sprite unlockedSprite;
+    [PreviewField]
+    public Sprite topViewSprite;
 
     public GameObject projectile;
 

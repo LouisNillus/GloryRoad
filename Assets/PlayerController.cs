@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D bc;
 
+    public SpriteRenderer weaponVisual;
+
     public GameObject gameOverScreen;
     public GameObject childVisual;
     public GameObject shootingStartPos;
@@ -55,6 +57,11 @@ public class PlayerController : MonoBehaviour
         if(hp <= 0)
         {
             gameOverScreen.SetActive(true);
+        }
+        
+        if(weaponVisual.sprite != weaponSelected.topViewSprite)
+        {
+            weaponVisual.sprite = weaponSelected.topViewSprite;
         }
 
         Vector2 lookChara = this.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
