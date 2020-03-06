@@ -50,13 +50,13 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity.x != 0 || rb.velocity.y != 0)
         {
-            Debug.Log("Velocity To 0");
             rb.velocity = Vector2.zero;
         }
 
         if(hp <= 0)
         {
             gameOverScreen.SetActive(true);
+            GameManager.instance.EndGame();
         }
         
         if(weaponVisual.sprite != weaponSelected.topViewSprite)
@@ -136,6 +136,9 @@ public class PlayerController : MonoBehaviour
                                 break;
                             case "SPAS 12":
                             weaponShaker.SetTrigger("Shotgun");
+                                break;
+                            case "AWP":
+                            weaponShaker.SetTrigger("Sniper");
                                 break;
                         }
 

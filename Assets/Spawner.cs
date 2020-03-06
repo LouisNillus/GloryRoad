@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
 
     public GameObject obstacle;
     [Range(0,10)]
+    public float minSpawnDelay;
+    [Range(0,10)]
     public float maxSpawnDelay;
 
 
@@ -26,7 +28,7 @@ public class Spawner : MonoBehaviour
     public IEnumerator Spawn()
     {
         GameObject go = Instantiate(obstacle, this.transform.position, Quaternion.identity) as GameObject;
-        yield return new WaitForSeconds(Random.Range(0, maxSpawnDelay));
+        yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         StartCoroutine(Spawn());
     }
 }

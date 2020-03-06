@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921094c98f39e6449ab49fe6773207df, type: 3}
   m_Name: Miniboss1
   m_EditorClassIdentifier: 
-  moneyReward: 299
+  moneyReward: 355
   hp: 855
   fatalRange: 20

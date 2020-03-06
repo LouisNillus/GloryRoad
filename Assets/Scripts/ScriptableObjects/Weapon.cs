@@ -19,11 +19,11 @@ public class Weapon : ScriptableObject
     public float projectileSpeed;
     [Range(0,3)]
     public float bulletLifeTime;
-    [Range(0,5)]
+    [Range(0,3)]
     public float timeBetweenShots;
-    [Range(0,500)]
+    [Range(0,400)]
     public int dmg;
-    [Range(0,20)]
+    [Range(0,10)]
     public int howManyProjectiles;
     [Range(0,180)]
     public int angleBetweenProjectiles;

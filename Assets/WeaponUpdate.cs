@@ -20,7 +20,7 @@ public class WeaponUpdate : MonoBehaviour
 
     public Image weaponSprite;
 
-    GameObject tempToolSlot;
+    public GameObject tempToolSlot;
 
     public static WeaponUpdate instance;
 
@@ -46,7 +46,7 @@ public class WeaponUpdate : MonoBehaviour
 
     public void SetWeaponInfos()
     {
-        if (weapon != null)
+        if (weapon != null && tempToolSlot.GetComponent<ToolSlot>() != null)
         {
             if (tempToolSlot.GetComponent<ToolSlot>().isBought == true)
             {
@@ -61,7 +61,7 @@ public class WeaponUpdate : MonoBehaviour
             damages.text = weapon.dmg.ToString();
             fireRate.text = (1f / weapon.timeBetweenShots).ToString("F2") + "/sec";
             dps.text = (1f / weapon.timeBetweenShots * weapon.dmg).ToString("F2");
-            range.text = (weapon.bulletLifeTime / weapon.projectileSpeed * 100f).ToString();
+            range.text = (weapon.bulletLifeTime / weapon.projectileSpeed * 100f).ToString("F2");
             bulletSpeed.text = weapon.projectileSpeed.ToString("F2");
             ammunitions.text = weapon.ammunitions.ToString();
             name.text = weapon.name.ToString();
