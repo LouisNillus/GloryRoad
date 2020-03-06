@@ -28,5 +28,5 @@ MonoBehaviour:
   lockedSprite: {fileID: 21300000, guid: 696e5adfc5154b14ba1dba25d73071ae, type: 3}
   unlockedSprite: {fileID: 21300000, guid: 2c8091da49218984a9613f2541b1b90e, type: 3}
   topViewSprite: {fileID: 21300000, guid: f75b4f2f6aae7fc448af407ba0a55354, type: 3}
-  projectile: {fileID: 6463102371918259601, guid: 905884ed815c3714697bb1d4aff7468d,
+  projectile: {fileID: 6463102371918259601, guid: 4b03af4954ec8f64db7fc99157468f70,
     type: 3}
